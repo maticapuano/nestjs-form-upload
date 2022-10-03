@@ -1,0 +1,35 @@
+{
+  "name": "nestjs-form-upload",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:maticapuano/nestjs-form-upload.git",
+  "author": "Matias Capuano",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "format": "prettier --write src/**/*.ts",
+    "lint": "eslint --fix src/**/*.ts"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^9.1.2",
+    "@nestjs/core": "^9.1.2",
+    "@nestjs/platform-express": "^9.1.2",
+    "@types/node": "^18.8.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.5.7",
+    "typescript": "^4.8.4"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^7.0.0 || ^8.0.0 || ^9.0.0",
+    "@nestjs/core": "^7.0.0 || ^8.0.0 || ^9.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.3 || ^7.2.0 || ^7.5.0"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "prettier": "^2.7.1"
+  }
+}
