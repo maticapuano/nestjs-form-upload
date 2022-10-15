@@ -1,5 +1,8 @@
 import busboy, { Busboy, FileInfo } from "busboy";
-import { FileUploadOptions } from "../interfaces/file-upload-options.interface";
+import {
+  FileUploadOptions,
+  FileUploadOptionsBase,
+} from "../interfaces/file-upload-options.interface";
 import appendField from "append-field";
 import FileType from "file-type";
 import { FileProcessorFactory } from "../processors/file-processor.factory";
@@ -16,7 +19,10 @@ export class FormProcessor {
   private handleFunctionToReject: Function;
   private fileStorePromises: Promise<void>[] = [];
 
-  public constructor(private request: Record<string, any>, private options: FileUploadOptions) {
+  public constructor(
+    private request: Record<string, any>,
+    private options: FileUploadOptionsBase & FileUploadOptions,
+  ) {
     this.instance = busboy({
       headers: this.request.headers,
     });
@@ -76,6 +82,16 @@ export class FormProcessor {
           const fileTypeFromFileName = meta.filename.split(".").pop();
           const fileExtension = (fileTypeFromBuffer?.ext || fileTypeFromFileName) ?? "unknown";
           const mimeType = fileTypeFromBuffer?.mime ?? "application/octet-stream";
+
+          if (
+            this.options &&
+            this.options.options &&
+            this.options.options.extensions &&
+            this.options.options.extensions.length &&
+            !this.options.options.extensions.includes(fileExtension)
+          ) {
+            this.rejectBadRequest(`Sorry, ${fileExtension} files are not allowed`);
+          }
 
           const factory = FileProcessorFactory.create(
             {

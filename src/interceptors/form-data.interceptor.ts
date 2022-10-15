@@ -12,6 +12,7 @@ import { InjectConfig } from "../constants/inject-config.constant";
 import { FILE_UPLOAD_OPTIONS } from "../decorators/file-upload.decorator";
 import { FileUploadOptions } from "../interfaces/file-upload-options.interface";
 import { FormProcessor } from "../utils/form-processor";
+import { parseConfig } from "../utils/parse-config.util";
 
 @Injectable()
 export class FormDataInterceptor implements NestInterceptor {
@@ -29,11 +30,10 @@ export class FormDataInterceptor implements NestInterceptor {
       throw new BadRequestException(message);
     }
 
-    const config = {
-      ...(this.reflect.get(FILE_UPLOAD_OPTIONS, context.getHandler()) || {}),
-      ...this.globalConfig,
-    };
-
+    const config = parseConfig(
+      this.globalConfig,
+      this.reflect.get(FILE_UPLOAD_OPTIONS, context.getHandler()),
+    );
     const formProcessor = new FormProcessor(request, config);
 
     return from(formProcessor.handle()).pipe(

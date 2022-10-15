@@ -1,14 +1,11 @@
 import { applyDecorators, SetMetadata, UseInterceptors } from "@nestjs/common";
 import { FormDataInterceptor } from "../interceptors/form-data.interceptor";
+import { FileUploadOptionsBase } from "../interfaces/file-upload-options.interface";
 
 export const FILE_UPLOAD_OPTIONS = Symbol("FILE_UPLOAD_OPTIONS");
 
-export interface FileUploadOptionDecorator {
+export interface FileUploadOptionDecorator extends FileUploadOptionsBase {
   folder?: string;
-  limits?: {
-    maxFiles?: number;
-    maxFileSize?: number;
-  };
 }
 
 export const FileUpload = (options?: FileUploadOptionDecorator): MethodDecorator => {
