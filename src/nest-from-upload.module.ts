@@ -11,6 +11,7 @@ import { FileUploadOptions } from "./interfaces/file-upload-options.interface";
       useValue: globalConfig,
     },
   ],
+  exports: [InjectConfig],
 })
 export class NestFormUploadModule {
   public static config(options: FileUploadOptions): DynamicModule {

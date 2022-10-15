@@ -1,3 +1,3 @@
 export enum FileUploadProvider {
-  DISK = "disk",
+  MEMORY = "memory",
 }

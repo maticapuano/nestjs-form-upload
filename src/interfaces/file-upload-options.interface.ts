@@ -1,11 +1,14 @@
 import { FileUploadProvider } from "../enums/file-upload-provider.enum";
 
-export type FileUploadOptions = FileDiskOptions;
+export type FileUploadOptions = MemoryDiskOptions;
 
-export interface FileDiskOptions {
-  provider: FileUploadProvider.DISK;
+export interface FileUploadOptionsBase {
   options: {
-    baseUrl: string;
-    uploadPath: string;
+    [key: string]: any;
   };
+}
+
+export interface MemoryDiskOptions extends FileUploadOptionsBase {
+  provider: FileUploadProvider.MEMORY;
+  options: {};
 }

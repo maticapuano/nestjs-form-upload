@@ -15,7 +15,8 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "resolveJsonModule": true,
-    "skipLibCheck": true
+    "noImplicitAny": false,
+    "strictNullChecks": true
   },
   "include": ["./src/**/*"],
   "exclude": ["test", "node_modules", "dist"]
