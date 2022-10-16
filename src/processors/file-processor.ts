@@ -20,6 +20,10 @@ export abstract class FileProcessor<T> {
     });
   }
 
+  public static isFile(file: any): boolean {
+    return file && file instanceof FileProcessor;
+  }
+
   protected getBuffer(): Buffer {
     if (!this.options.buffer) {
       throw new Error("Buffer is not defined");

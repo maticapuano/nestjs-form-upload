@@ -11,3 +11,6 @@ export * from "./processors/file-processor";
 export * from "./processors/file-processor.factory";
 export * from "./processors/implementations/memory/dtos/memory-file-response.dto";
 export * from "./processors/implementations/memory/memory-disk-processor";
+export * from "./decorators/validations/is-file.validator";
+export * from "./decorators/validations/is-file-array.validator";
+export * from "./decorators/validations/has-extension.validator";
