@@ -6,6 +6,7 @@ NestJS Form Upload is a module for NestJS that allows you to upload files using 
 - Integration with `class-validator` and `class-transformer`
 - Support for multiple files
 - Process a single request `fields` and `files` at the same time
+- Support image resizing and image compression (using `sharp`)
 
 ## Providers available
 
@@ -60,6 +61,38 @@ export class AppController {
     // Do something with the file
 
     return this.fileUploadService.create(file);
+  }
+}
+```
+
+### Image resizing
+
+You can resize the image using the `resizes` option. The `resizes` option is an array of `ResizeOptions` objects.
+
+Note: The `resizes` only works with images, if you try to resize a non-image file, the module will ignore the resize option and will upload the file as it is.
+
+```typescript
+import { Controller, Post, UseInterceptors } from "@nestjs/common";
+
+export class AppController {
+  @Post()
+  @FileUpload({
+    folder: "uploads",
+    extensions: ["jpg", "png"],
+    maxFileSize: 1024 * 1024 * 5, // exprese in bytes = 5MB
+    maxFiles: 5, // max files to upload at the same time
+    resizes: [
+      {
+        // if prefix is not provided, the file name the width and height ej: used 200x200-{originalFileName}
+        prefix: "small", // will generate a file with the name small-{originalFileName}
+        width: 200,
+        height: 200,
+        quality: 90,
+      },
+    ],
+  })
+  public async create(@Body() file: FileUpload) {
+    // Do something with the file
   }
 }
 ```
