@@ -1,4 +1,5 @@
 import { FileUploadProvider } from "../enums/file-upload-provider.enum";
+import { ResizeOptions } from "./resize.options.interface";
 
 export type FileUploadOptions = MemoryDiskOptions;
 
@@ -22,6 +23,10 @@ export interface FileUploadOptionsBase {
      * @default Infinity
      */
     maxFiles?: number;
+    /**
+     * Resize the image to the specified dimensions.
+     */
+    resizes?: ResizeOptions[];
   };
 }
 
