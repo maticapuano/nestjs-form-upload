@@ -108,7 +108,7 @@ export class FormProcessor {
             this.options,
           );
 
-          resolve(factory.execute());
+          resolve(factory.process());
         }),
       );
     });

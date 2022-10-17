@@ -20,4 +20,8 @@ export class MemoryFile {
   @Expose()
   @Type(() => Buffer)
   public buffer: Buffer;
+
+  @Expose()
+  @Type(() => Buffer)
+  public resize: Buffer;
 }

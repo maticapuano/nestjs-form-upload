@@ -1,14 +1,13 @@
-import { Type } from "@nestjs/common";
+import { plainToClass } from "class-transformer";
 import { FileProcessor } from "../../file-processor";
 import { MemoryFile } from "./dtos/memory-file-response.dto";
 
 export class MemoryDiskProcessor extends FileProcessor<MemoryFile> {
-  public dtoResponse: Type<MemoryFile> = MemoryFile;
-
   public async process(): Promise<MemoryFile> {
-    return {
+    return plainToClass(MemoryFile, {
       ...this.getMetadata(),
       buffer: this.getBuffer(),
-    };
+      resize: await this.getResized(),
+    });
   }
 }

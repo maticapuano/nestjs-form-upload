@@ -9,9 +9,14 @@ export const HasExtension = (extensions: string[], validationOptions?: Validatio
     validator: {
       validate(value: FileProcessorMetadata, args: ValidationArguments) {
         const [extensions] = args.constraints;
-        const files = parseArray(value);
 
-        return files.every(file => extensions.includes(file.extension));
+        if (value) {
+          const files = parseArray(value);
+
+          return files.every(file => extensions.includes(file.extension));
+        }
+
+        return true;
       },
       defaultMessage: (validationArguments?: ValidationArguments) => {
         const allowedExtensions: string[] = parseArray(validationArguments?.constraints[0]);

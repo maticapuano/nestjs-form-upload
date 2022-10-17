@@ -67,9 +67,9 @@ export class AppController {
 
 ### Image resizing
 
-You can resize the image using the `resizes` option. The `resizes` option is an array of `ResizeOptions` objects.
+You can resize the image using the `resize` option.
 
-Note: The `resizes` only works with images, if you try to resize a non-image file, the module will ignore the resize option and will upload the file as it is.
+Note: The `resize` only works with images, if you try to resize a non-image file, the module will ignore the resize option and will upload the file as it is.
 
 ```typescript
 import { Controller, Post, UseInterceptors } from "@nestjs/common";
@@ -81,15 +81,7 @@ export class AppController {
     extensions: ["jpg", "png"],
     maxFileSize: 1024 * 1024 * 5, // exprese in bytes = 5MB
     maxFiles: 5, // max files to upload at the same time
-    resizes: [
-      {
-        // if prefix is not provided, the file name the width and height ej: used 200x200-{originalFileName}
-        prefix: "small", // will generate a file with the name small-{originalFileName}
-        width: 200,
-        height: 200,
-        quality: 90,
-      },
-    ],
+    resize: { width: 100, height: 100, quality: 90 },
   })
   public async create(@Body() file: FileUpload) {
     // Do something with the file
