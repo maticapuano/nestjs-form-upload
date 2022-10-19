@@ -16,10 +16,9 @@ import { parseConfig } from "../utils/parse-config.util";
 
 @Injectable()
 export class FormDataInterceptor implements NestInterceptor {
-  public constructor(
-    @Inject(InjectConfig) private globalConfig: FileUploadOptions,
-    private reflect: Reflector,
-  ) {}
+  private reflect: Reflector = new Reflector();
+
+  public constructor(@Inject(InjectConfig) private globalConfig: FileUploadOptions) {}
 
   public async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest();

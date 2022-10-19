@@ -12,7 +12,15 @@ export abstract class FileProcessor<T> {
   public abstract process(): Promise<T>;
 
   public static isFile(file: any): boolean {
-    return file && file instanceof FileProcessor;
+    return (
+      file &&
+      file?.originalName &&
+      file?.encoding &&
+      file?.extension &&
+      file?.mimeType &&
+      file?.buffer &&
+      file?.buffer instanceof Buffer
+    );
   }
 
   protected getBuffer(): Buffer {

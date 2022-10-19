@@ -55,7 +55,7 @@ export class FormProcessor {
       return;
     }
 
-    const processFile = this.processFile(stream, meta)
+    const processFile = this.processFile(fileName, stream, meta)
       .then(file => {
         if (stream.truncated) {
           this.instance.emit("fileSize");
@@ -74,7 +74,7 @@ export class FormProcessor {
     this.fileStorePromises.push(processFile);
   }
 
-  private async processFile(stream: Readable, meta: FileInfo): Promise<any> {
+  private async processFile(fileName: string, stream: Readable, meta: FileInfo): Promise<any> {
     return new Promise((resolve, reject) => {
       stream.pipe(
         concat({ encoding: "buffer" }, async (buffer: Buffer) => {
@@ -95,6 +95,7 @@ export class FormProcessor {
 
           const factory = FileProcessorFactory.create(
             {
+              fieldName: fileName.replace(/\[.*\]/, ""),
               originalName: meta.filename,
               encoding: meta.encoding,
               mimeType,

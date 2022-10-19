@@ -5,7 +5,7 @@ import { FileUploadOptions } from "../interfaces/file-upload-options.interface";
 import { FileProcessorOptions } from "../interfaces/file-processor.interface";
 
 export class FileProcessorFactory {
-  public static create<T>(
+  public static create(
     options: FileProcessorOptions,
     config: FileUploadOptions,
   ): FileProcessor<unknown> {

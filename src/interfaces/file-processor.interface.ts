@@ -1,4 +1,5 @@
 export interface FileProcessorOptions extends FileProcessorMetadata {
+  fieldName: string;
   buffer: Buffer;
   config: Record<string, any>;
 }

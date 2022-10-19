@@ -14,3 +14,6 @@ export * from "./processors/implementations/memory/memory-disk-processor";
 export * from "./decorators/validations/is-file.validator";
 export * from "./decorators/validations/is-file-array.validator";
 export * from "./decorators/validations/has-extension.validator";
+export * from "./decorators/validations/has-mime.validator";
+export * from "./decorators/validations/min-file-size.validator";
+export * from "./decorators/validations/max-file-size.validator";
