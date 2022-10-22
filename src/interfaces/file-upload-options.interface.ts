@@ -26,7 +26,7 @@ export interface FileUploadOptionsBase {
     /**
      * Resize the image to the specified dimensions.
      */
-    resize?: ResizeOptions;
+    resize?: Record<string, ResizeOptions>;
   };
 }
 

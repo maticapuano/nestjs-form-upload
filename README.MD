@@ -24,7 +24,7 @@ $ npm install --save nestjs-form-upload
 
 ```typescript
 import { Module } from "@nestjs/common";
-import { FormUploadModule, FileUploadProvider } from "@nestjs-form-upload";
+import { FormUploadModule, FileUploadProvider } from "nestjs-form-upload";
 
 @Module({
   imports: [
@@ -43,8 +43,8 @@ Add the `@FileUpload()` decorator to your controller method. The decorator will 
 
 ```typescript
 import { Controller, Post, UseInterceptors } from "@nestjs/common";
-import { FileInterceptor } from "@nestjs-form-upload";
-import { FileUploadService } from "@nestjs-form-upload";
+import { FileInterceptor } from "nestjs-form-upload";
+import { FileUploadService } from "nestjs-form-upload";
 
 @Controller()
 export class AppController {
@@ -81,7 +81,9 @@ export class AppController {
     extensions: ["jpg", "png"],
     maxFileSize: 1024 * 1024 * 5, // exprese in bytes = 5MB
     maxFiles: 5, // max files to upload at the same time
-    resize: { width: 100, height: 100, quality: 90 },
+    resize: {
+      myImage: { width: 100, height: 100, quality: 90 },
+    },
   })
   public async create(@Body() file: FileUpload) {
     // Do something with the file
@@ -117,4 +119,28 @@ Check if the file has the specified extension.
 
 ```typescript
 @HasExtension(extensions: string, validationOptions?: ValidationOptions)
+```
+
+### HasMime
+
+Check if file has mime specified.
+
+```typescript
+@HasMimeFile(mimes: string[])
+```
+
+### MinFileSize
+
+Check if the file has the minimum size.
+
+```typescript
+@MinFileSize(minSize: number, validationOptions?: ValidationOptions)
+```
+
+### MaxFileSize
+
+Check if the file has the maximum size.
+
+```typescript
+@MaxFileSize(maxSize: number, validationOptions?: ValidationOptions)
 ```

@@ -39,12 +39,28 @@ export abstract class FileProcessor<T> {
       return null;
     }
 
-    if (config && config.resize && config.resize.width && config.resize.height) {
-      return ImageResizing.resize(this.getBuffer(), {
-        width: config.resize.width,
-        height: config.resize.height,
-        quality: config.resize.quality ?? 100,
-      });
+    if (config && config.resize && Object.keys(config.resize).length) {
+      const resizeKeys = Object.keys(config.resize);
+
+      for (const key of resizeKeys) {
+        const resize = config.resize[key];
+
+        if (!resize || key !== this.options.fieldName) {
+          continue;
+        }
+
+        const { width, height, quality } = resize;
+
+        if (!width || !height) {
+          throw new Error(`Resize width and height are required for ${key} resize`);
+        }
+
+        return await ImageResizing.resize(this.getBuffer(), {
+          width,
+          height,
+          quality: quality ?? 100,
+        });
+      }
     }
 
     return null;

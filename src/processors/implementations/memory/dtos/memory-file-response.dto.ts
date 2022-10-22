@@ -22,6 +22,5 @@ export class MemoryFile {
   public buffer: Buffer;
 
   @Expose()
-  @Type(() => Buffer)
-  public resize: Buffer;
+  public resized: Buffer | null;
 }
