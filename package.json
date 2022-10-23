@@ -1,6 +1,6 @@
 {
   "name": "nestjs-form-upload",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "git@github.com:maticapuano/nestjs-form-upload.git",
   "author": "Matias Capuano",
   "license": "MIT",
