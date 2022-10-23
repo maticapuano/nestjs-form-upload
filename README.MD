@@ -52,10 +52,11 @@ export class AppController {
 
   @Post()
   @FileUpload({
-    folder: "uploads",
-    extensions: ["jpg", "png"],
-    maxFileSize: 1024 * 1024 * 5, // exprese in bytes = 5MB
-    maxFiles: 5, // max files to upload at the same time
+    options: {
+      extensions: ["jpg", "png"],
+      maxFileSize: 1024 * 1024 * 5, // exprese in bytes = 5MB
+      maxFiles: 5, // max files to upload at the same time
+    },
   })
   public async create(@Body() file: FileUpload) {
     // Do something with the file
@@ -77,12 +78,13 @@ import { Controller, Post, UseInterceptors } from "@nestjs/common";
 export class AppController {
   @Post()
   @FileUpload({
-    folder: "uploads",
-    extensions: ["jpg", "png"],
-    maxFileSize: 1024 * 1024 * 5, // exprese in bytes = 5MB
-    maxFiles: 5, // max files to upload at the same time
-    resize: {
-      myImage: { width: 100, height: 100, quality: 90 },
+    options: {
+      extensions: ["jpg", "png"],
+      maxFileSize: 1024 * 1024 * 5, // exprese in bytes = 5MB
+      maxFiles: 5, // max files to upload at the same time
+      resize: {
+        myImage: { width: 100, height: 100, quality: 90 },
+      },
     },
   })
   public async create(@Body() file: FileUpload) {
