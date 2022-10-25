@@ -1,6 +1,4 @@
 export enum FileUploadProvider {
-  /**
-   * Upload files to memory
-   */
   MEMORY = "memory",
+  S3 = "s3",
 }

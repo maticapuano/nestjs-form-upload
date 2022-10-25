@@ -79,7 +79,7 @@ export abstract class FileProcessor<T> {
     return this.options.extension;
   }
 
-  public getConfig<T extends FileUploadOptionsBase>(): T["options"] {
+  public getConfig<T extends FileUploadOptionsBase>(): T["options"] & { folder?: string } {
     return this.options.config as unknown as T;
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "nestjs-form-upload",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": "git@github.com:maticapuano/nestjs-form-upload.git",
   "author": "Matias Capuano",
   "license": "MIT",
@@ -41,6 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "append-field": "1.0.0",
+    "aws-sdk": "^2.1239.0",
     "busboy": "^1.6.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",

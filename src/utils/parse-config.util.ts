@@ -13,9 +13,10 @@ export const parseConfig = (
     ...global,
     ...local,
     options: {
+      folder: global.folder || null,
       ...global.options,
       ...local.options,
       extensions,
     },
-  };
+  } as FileUploadOptions;
 };

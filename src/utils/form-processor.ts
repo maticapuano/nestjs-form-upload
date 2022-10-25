@@ -9,6 +9,7 @@ import { FileProcessorFactory } from "../processors/file-processor.factory";
 import { Readable } from "../types/readable.type";
 import { FileProcessor } from "../processors/file-processor";
 import { BadRequestException } from "@nestjs/common";
+import { randomUUID } from "crypto";
 import concat from "concat-stream";
 
 export class FormProcessor {
@@ -96,7 +97,10 @@ export class FormProcessor {
           const factory = FileProcessorFactory.create(
             {
               fieldName: fileName.replace(/\[.*\]/, ""),
-              originalName: meta.filename,
+              originalName:
+                this.options.namingStrategy === "original"
+                  ? meta.filename
+                  : `${randomUUID()}.${fileExtension}`,
               encoding: meta.encoding,
               mimeType,
               extension: fileExtension,
