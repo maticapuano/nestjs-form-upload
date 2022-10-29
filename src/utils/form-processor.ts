@@ -113,7 +113,7 @@ export class FormProcessor {
             this.options,
           );
 
-          resolve(factory.process());
+          return resolve(factory.process());
         }),
       );
     });

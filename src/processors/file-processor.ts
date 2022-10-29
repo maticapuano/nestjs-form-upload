@@ -5,6 +5,7 @@ import {
 import { FileUploadOptionsBase } from "../interfaces/file-upload-options.interface";
 import { ImageResizing } from "../utils/image-resizing";
 import { isImageMime } from "../utils/is-image.util";
+import { FileDto } from "./implementations/file.dto";
 
 export abstract class FileProcessor<T> {
   public constructor(private options: FileProcessorOptions) {}
@@ -12,15 +13,7 @@ export abstract class FileProcessor<T> {
   public abstract process(): Promise<T>;
 
   public static isFile(file: any): boolean {
-    return (
-      file &&
-      file?.originalName &&
-      file?.encoding &&
-      file?.extension &&
-      file?.mimeType &&
-      file?.buffer &&
-      file?.buffer instanceof Buffer
-    );
+    return file && file instanceof FileDto;
   }
 
   protected getBuffer(): Buffer {
@@ -29,6 +22,10 @@ export abstract class FileProcessor<T> {
     }
 
     return this.options.buffer;
+  }
+
+  protected getSize(): number {
+    return this.getBuffer().length;
   }
 
   protected async getResized(): Promise<Buffer | null> {

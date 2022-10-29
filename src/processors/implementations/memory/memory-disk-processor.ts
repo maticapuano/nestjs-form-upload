@@ -8,6 +8,7 @@ export class MemoryDiskProcessor extends FileProcessor<MemoryFile> {
       ...this.getMetadata(),
       buffer: this.getBuffer(),
       resized: await this.getResized(),
+      size: this.getSize(),
     });
   }
 }

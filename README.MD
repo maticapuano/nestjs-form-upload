@@ -11,7 +11,6 @@ NestJS Form Upload is a module for NestJS that allows you to upload files using 
 ## Providers available
 
 - Memory (default)
-- Amazon S3
 
 ## Installation
 

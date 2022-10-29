@@ -1,22 +1,7 @@
 import { Expose, Type } from "class-transformer";
+import { FileDto } from "../../file.dto";
 
-export class MemoryFile {
-  @Expose()
-  @Type(() => String)
-  public originalName: string;
-
-  @Expose()
-  @Type(() => String)
-  public encoding: string;
-
-  @Expose()
-  @Type(() => String)
-  public mimeType: string;
-
-  @Expose()
-  @Type(() => String)
-  public extension: string;
-
+export class MemoryFile extends FileDto {
   @Expose()
   @Type(() => Buffer)
   public buffer: Buffer;

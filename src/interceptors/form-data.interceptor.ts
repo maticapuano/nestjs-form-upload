@@ -30,8 +30,8 @@ export class FormDataInterceptor implements NestInterceptor {
     }
 
     const config = parseConfig(
-      this.globalConfig,
-      this.reflect.get(FILE_UPLOAD_OPTIONS, context.getHandler()),
+      this.globalConfig ?? {},
+      this.reflect.get(FILE_UPLOAD_OPTIONS, context.getHandler()) ?? {},
     );
     const formProcessor = new FormProcessor(request, config);
 

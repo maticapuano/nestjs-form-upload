@@ -1,6 +1,6 @@
 import { Expose, Type } from "class-transformer";
 
-export class S3File {
+export abstract class FileDto {
   @Expose()
   @Type(() => String)
   public originalName: string;
@@ -18,6 +18,6 @@ export class S3File {
   public extension: string;
 
   @Expose()
-  @Type(() => String)
-  public url: string;
+  @Type(() => Number)
+  public size: number;
 }

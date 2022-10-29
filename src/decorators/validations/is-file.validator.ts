@@ -7,12 +7,22 @@ export const IsFile = (options?: ValidationOptions): PropertyDecorator => {
       name: "IsFile",
       constraints: [],
       validator: {
-        validate(value: any) {
-          return value && FileProcessor.isFile(value);
+        validate(value) {
+          if (options && options.each) {
+            if (!Array.isArray(value)) {
+              return [value].every(item => FileProcessor.isFile(item));
+            }
+
+            return Array.isArray(value) && value.every(item => FileProcessor.isFile(item));
+          }
+
+          return !Array.isArray(value) && FileProcessor.isFile(value);
         },
 
         defaultMessage(args: ValidationArguments): string {
-          return `Field "${args.property}" does not contain file`;
+          return options && options.each
+            ? `${args.property} Each value must be a file`
+            : `${args.property} Value must be a file`;
         },
       },
     },
